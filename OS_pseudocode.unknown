@@ -1,0 +1,110 @@
+class code{
+	create instance of Buffer class
+	
+	main {
+	create thread exector with two threads
+	create instance of producerTask
+	tread slepp after 1000 milesecond
+	create instance of consumerTask
+	tread slepp after 1000 milesecond
+  	create instance of consumerTask
+	tread slepp after 1000 milesecond
+	end the exector
+	 
+	
+	}
+}
+
+# task for adding an int to the buffer
+
+class producertask implement runnable{
+try{
+	i<-1
+	while(true) do {
+	print "producer writes i the remaining "
+	add value to buffer
+	put the thread into sleep
+	}	
+	}
+catch InterruptedException ex{
+	print error
+	}
+}
+
+# task for reading and deleting an int from the buffer
+
+class consumerTask implement runnable{
+try{
+	while(true) do {
+	print "consumer consume"
+	put the thread into sleep 
+	}	
+	}
+catch InterruptedException ex{
+	print error
+	}
+}
+
+# class of buffer
+
+class buffer{
+	capacity<-2 ,remaining<-1
+	creating queue from type linked list
+	create a new lock
+
+	#create two condition
+	create condition notEmpty
+	create condition notFull
+
+	create function produce {
+
+	try{
+		while queue.size == capacity{
+		print "wait for notFull condition"
+		making anotfull condition in await
+		}
+	adding the value to the queue
+	remaining++
+	signal notEmpty condition
+	}
+
+	catch InterruptedException ex{
+	print error
+	}
+
+	release the lock
+	}
+
+create function consume {
+	value<-0
+	acquire the lock
+	
+	try{
+	while queue.isEmpty {
+	print "wait for notEmpty condition"
+	making anotEmpty condition in await
+	}
+
+	removing first value in the queue
+	remaining--
+	signal notFull condition
+	}
+
+	catch InterruptedException ex{
+	print "ex"
+	}
+
+	finally{
+	release the lock
+	return value
+	}
+
+	}
+	
+}
+
+
+
+
+
+
